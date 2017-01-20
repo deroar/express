@@ -1,8 +1,6 @@
 var express = require('express');
 var model = require('./model.js');
 
-//var router = express.Router();
-
 /* GET home page. */
 exports.index = function (req, res, next) {
 	res.render('login', { title: 'matching' });
@@ -23,6 +21,7 @@ exports.login = function (req, res) {
 
 	var selectUserQuery = 'SELECT * FROM `user` WHERE `name` = ?';
 	var insertUserQuery = 'INSERT INTO `user`(name, rating) values(? , 1500)';
+	var selectRoomQuery = 'SELECT * FROM `room`';
 
 	connection.query(selectUserQuery, [name], function (selErr, selRes, selFields) {
 		if (selErr) {
@@ -39,16 +38,28 @@ exports.login = function (req, res) {
 					res.redirect('/');
 				}
 
-				res.render('menu/menu', { res: user });
+				connection.query(selectRoomQuery, [], function (selRoomErr, selRoomRes, selRoomFie) {
+					if (selRoomErr) {
+						console.log('selectRoomErr');
+						res.redirect('/');
+					}
+
+					res.render('menu/menu', { res: selRoomRes });
+				});
+
 			});
 		} else {
 			console.log('login: ' + selRes);
-			res.render('menu/menu', { res: selRes });
+
+			connection.query(selectRoomQuery, [], function (selRoomErr, selRoomRes, selRoomFie) {
+				if (selRoomErr) {
+					console.log('selectRoomErr');
+					res.redirect('/');
+				}
+
+				res.render('menu/menu', { res: selRoomRes });
+			});
 		}
 	});
 };
-
-
-//module.exports = router;
-
 

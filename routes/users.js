@@ -1,9 +1,23 @@
-var express = require('express');
-var router = express.Router();
+var model = require('./model.js');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+exports.update = function (req, res) {
+	console.log('--start user update');
+	//console.log('res', res);
 
-module.exports = router;
+	var connection = model.connection;
+
+	var name = req.body.name;
+	var rating = req.body.rating;
+
+	var updateUserQuery = 'UPDATE `user` SET rating = ? WHERE name = ?';
+
+	connection.query(updateUserQuery, [rating, name], function (err, response, fields) {
+		if (err) {
+			console.log('updateUserErr');
+			res.render('menu/menu', { res: 'updateUserErr' });
+		}
+
+		res.render('menu/menu', { res: 'Successfully updated.' });
+	});
+};
+

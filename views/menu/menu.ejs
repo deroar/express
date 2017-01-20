@@ -2,13 +2,35 @@
 <html lang="ja">
 	</head>
 		<title>Menu</title>
-		<link rel = "stylesheet" type= "text/css" href = "/css/rayout.css">
 		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="./javascripts/menu/index.js"></script>
 	</head>
 
 	<body>
 		<h1>
 			<p>Menu</p>
 		</h1>
+
+		<h2>
+			<p>ルーム情報</p>
+			
+
+			<p>ユーザ情報更新</p>
+			<form action="/userUpdate" method="POST" name="update" id="update">
+				<input type="text" name="name" placeholder="Name" id="nametxt">
+				<input type="number" name="rating" id="userRating">
+				<input type="submit" value="更新">
+			</form>
+
+			<p>ルーム情報更新</p>
+			<form action="/roomUpdate" method="POST" name="roomUpdate" id="roomUpdate">
+				<input type="number" name="roomId" id="roomId">
+				<input type="text" name="roomName" placeholder="room name" id="roomName">
+				<input type="text" name="hostName" placeholder="host name" id="hostName">
+				<input type="number" name="rating" id="roomRating">
+				<input type="submit" value="更新">
+			</form>
+
+		</h2>
 	</body>
 </html>
