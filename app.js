@@ -5,10 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var eloRating = require('./routes/eloRating');
 var login = require('./routes/login');
 var menu = require('./routes/menu');
 var room = require('./routes/room');
 var users = require('./routes/users');
+var battle = require('./routes/battle');
 
 var app = express();
 
@@ -30,7 +32,9 @@ app.get('/', login.index);
 app.get('/getUsers', menu.getUsers);
 app.get('/login', login.login);
 app.post('/userUpdate', users.update);
+app.post('/rateUpdate', eloRating.getNewRate);
 app.post('/roomUpdate', room.update);
+//app.post('/battleResultUpdate', battle.update);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
