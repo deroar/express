@@ -10,10 +10,10 @@ exports.update = function (req, res) {
 	var rating = req.body.rating;
 
 	var updateUserQuery = 'INSERT INTO `user`(name, rating) values(? , ?) ' +
-		'ON DUPLICATE KEY UPDATE name = ?';
+		'ON DUPLICATE KEY UPDATE name = ?, rating = ?';
 	var selectUserAllQuery = 'SELECT * FROM `user`';
 
-	connection.query(updateUserQuery, [name, rating, name], function (err, response, fields) {
+	connection.query(updateUserQuery, [name, rating, name, rating], function (err, response, fields) {
 		if (err) {
 			console.log('updateUserErr');
 			res.render('menu/menu', { res: 'updateUserErr' });
