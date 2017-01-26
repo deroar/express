@@ -1,6 +1,7 @@
 var model = require('./model.js');
 var calcRate = require('./calcRate.js');
 
+var K = 32;
 
 function orgUsers (users, cb) {
 	console.log('--start orgUsers--');
@@ -45,8 +46,19 @@ function orgUsers (users, cb) {
 
 	var res = {};
 
-	res.teamA = teamA;
-	res.teamB = teamB;
+	var teamArrayA = [];
+	var teamArrayB = [];
+
+	for (var key in teamA) {
+		teamArrayA.push(teamA[key]);
+	}
+
+	for (var key in teamB) {
+		teamArrayB.push(teamB[key]);
+	}
+
+	res.teamA = teamArrayA;
+	res.teamB = teamArrayB;
 
 	console.log('res', res);
 	cb(null, res);
@@ -64,7 +76,7 @@ exports.result = function (req, res) {
 		var teamA = Object.assign(response.teamA);
 		var teamB = Object.assign(response.teamB);
 
-		calcRate.getNewRate(teamA, teamB, function (errCalcRate, resCalcRate) {
+		calcRate.getNewRate(teamA, teamB, K, function (errCalcRate, resCalcRate) {
 			if (errCalcRate) {
 				console.log('errCalcRate', errCalcRate);
 			}
