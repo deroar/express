@@ -10,14 +10,73 @@
 		<h1>
 			<p>Menu</p>
 		</h1>
-
+<!--
 		<h2>User</h2>
-			<table id="user" border="1">
+
+		<table id="user" border="1">
+			<tr>
+				<td>User Name</td>
+				<td>Rating</td>
+			</tr>
+		</table>
+-->
+		<h2>Battle</h2>
+
+		<form action="/battle" method="POST" name="battle" id="battle">
+			A Team
+			<table id="ateam" border="0.5">
 				<tr>
-					<td>User Name</td>
-					<td>Rating</td>
+					<td><input type="text" name="teamA-A1-user" placeholder="Name"></td>
+					<td><input type="number" name="teamA-A1-rating" placeholder="Rating"></td>
 				</tr>
-			<table>
+        	                <tr>
+                	                <td><input type="text" name="teamA-A2-user" placeholder="Name"></td>
+                        	        <td><input type="number" name="teamA-A2-rating" placeholder="Rating"></td>
+	                        </tr>
+        	                <tr>
+                	                <td><input type="text" name="teamA-A3-user" placeholder="Name"></td>
+                        	        <td><input type="number" name="teamA-A3-rating" placeholder="Rating"></td>
+	                        </tr>
+        	                <tr>
+                	                <td><input type="text" name="teamA-A4-user" placeholder="Name"></td>
+                        	        <td><input type="number" name="teamA-A4-rating" placeholder="Rating"></td>
+	                        </tr>
+        	                <tr>
+                	                <td><input type="text" name="teamA-A5-user" placeholder="Name"></td>
+                        	        <td><input type="number" name="teamA-A5-rating" placeholder="Rating"></td>
+	                        </tr>
+			</table>
+
+			B Team
+	                <table id="bteam" border="0.5">
+        	                <tr>
+                                	<td><input type="text" name="teamB-B1-user" placeholder="Name"></td>
+                	                <td><input type="number" name="teamB-B1-rating" placeholder="Rating"></td>
+                        	</tr>
+	                        <tr>
+        	                        <td><input type="text" name="teamB-B2-user" placeholder="Name"></td>
+                	                <td><input type="number" name="teamB-B2-rating" placeholder="Rating"></td>
+	                        </tr>
+        	                <tr>
+	                                <td><input type="text" name="teamB-B3-user" placeholder="Name"></td>
+                	                <td><input type="number" name="teamB-B3-rating" placeholder="Rating"></td>
+                        	</tr>
+        	                <tr>
+                	                <td><input type="text" name="teamB-B4-user" placeholder="Name"></td>
+                        	        <td><input type="number" name="teamB-B4-rating" placeholder="Rating"></td>
+                        	</tr>
+	                        <tr>
+        	                        <td><input type="text" name="teamB-B5-user" placeholder="Name"></td>
+                	                <td><input type="number" name="teamB-B5-rating" placeholder="Rating"></td>
+	                        </tr>
+        	        </table>
+
+			<input type="submit" value="UpdateRate">
+		</form>
+
+		<p>
+			<input type="button" value="TeamReset" onClick="teamReset()">
+		</p>
 
 		<h4>
 			<p>ユーザ情報更新</p>
@@ -26,15 +85,15 @@
 				<input type="number" name="rating" placeholder="Rating" id="userRating">
 				<input type="submit" value="更新">
 			</form>
-			<p>レート更新(by Elo Rating)</p>
+
+<!--			<p>レート更新(by Elo Rating)</p>
                         <form action="/rateUpdate" method="POST" name="update" id="update">
                                 <input type="text" name="name" placeholder="Name" id="nametxt">
                                 <input type="text" name="opponentName" placeholder="opponentName" id="nametxt">
                                 <input type="text" name="winner" placeholder="winner" id="nametxt">
                                 <input type="submit" value="更新">
                         </form>
-
-
+-->
 <!--
 			<p>対戦履歴更新</p>
 			<form action="/battleResultUpdate" method="POST" name="update" id="update">

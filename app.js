@@ -6,9 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var eloRating = require('./routes/eloRating');
-var login = require('./routes/login');
 var menu = require('./routes/menu');
-var room = require('./routes/room');
 var users = require('./routes/users');
 var battle = require('./routes/battle');
 
@@ -27,14 +25,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
-app.get('/', login.index);
-//app.use('/users', users);
-app.get('/getUsers', menu.getUsers);
-app.get('/login', login.login);
+app.get('/', menu.index);
+app.post('/battle', battle.result);
 app.post('/userUpdate', users.update);
 app.post('/rateUpdate', eloRating.getNewRate);
-app.post('/roomUpdate', room.update);
-//app.post('/battleResultUpdate', battle.update);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
